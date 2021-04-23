@@ -1,0 +1,55 @@
+.dashboard {
+  display: flex;
+  overflow: hidden;
+  height: 100vh;
+  padding: 4rem;
+  .ant-spin-nested-loading {
+    width: 100%;
+    height: 100vh;
+  }
+  &-content {
+    margin-top: 2.4rem;
+    background-color: #ffffff;
+    border-radius: 24px;
+    height: 80vh;
+    padding: 4rem;
+    > h1 {
+      font-size: 2rem;
+      margin-bottom: 2.4rem;
+    }
+    &__overview {
+      padding: 2.4rem;
+      border: 2px solid;
+      border-radius: 12px;
+      width: auto;
+      margin-bottom: 6rem;
+      &.balance {
+        background-color: rgba(254, 239, 239, 0.38);
+        color: $appBase;
+        border: 3px solid #FF7979;;
+      }
+      &.balance-retailer {
+        background-color: rgba(237, 249, 240, 0.38);
+        color: #287d3c;
+        border: 3px solid #5ACA75;
+      }
+      &.total-transaction {
+        background-color: rgba(238, 242, 250, 0.38);
+        color: #2e5aac;
+        border: 3px solid #89A7E0;
+      }
+      p {
+        font-weight: 600;
+        font-size: 1.6rem;
+        line-height: 2.4rem;
+        color: inherit;
+      }
+      h1 {
+        font-weight: 600;
+        font-size: 4.8rem;
+        line-height: 115%;
+        color: inherit;
+      }
+    }
+  }
+}

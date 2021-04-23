@@ -142,9 +142,10 @@
 }
 
 // /* auth */
-@import '../../modules/login/Auth.scss';
-
+@import "../../modules/login/Auth.scss";
 // /* common */
+@import "../../modules/dashboard/Dashboard.scss";
+
 // @import "../../app/components/NotFound/NotFound.scss";
 // @import "../../app/components/CustomButton/CustomButton.scss";
 // @import "../../app/components/FloatingButton/FloatingButton.scss";
@@ -159,4 +160,3 @@
 // @import "../../app/modules/topup/Topup.scss";
 // @import "../../app/modules/sale/Sale.scss";
 // @import "../../app/modules/retailer/Retailer.scss";
-// @import "../../app/modules/dashboard/Dashboard.scss";
