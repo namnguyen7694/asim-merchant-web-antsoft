@@ -1,0 +1,125 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  overflow: hidden;
+}
+
+html,
+body,
+blockquote,
+code,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+pre {
+  margin: 0;
+  padding: 0;
+  color: $textBaseDark;
+}
+button,
+fieldset,
+form,
+input,
+legend,
+textarea,
+select {
+  margin: 0;
+  padding: 0;
+}
+fieldset {
+  border: 0;
+}
+a,
+a * {
+  cursor: pointer;
+}
+
+div {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  text-align: left;
+}
+hr {
+  border: 0;
+}
+img {
+  max-width: 100%;
+  border-style: none;
+  object-fit: contain;
+}
+applet,
+iframe,
+object {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+button,
+input[type='button'],
+input[type='image'],
+input[type='reset'],
+input[type='submit'],
+label {
+  cursor: pointer;
+}
+ul,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+strong {
+  font-weight: bold;
+}
+em {
+  font-style: italic;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+.ant-modal-wrap::-webkit-scrollbar {
+  display: none;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 0.6rem;
+  height: 0.6rem;
+}
+::-webkit-scrollbar-button {
+  width: 0.6rem;
+  height: 0;
+}
+::-webkit-scrollbar-thumb {
+  background: $grayBase;
+  border: 0rem ridge $grayBase;
+  border-radius: 1.5rem;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: $grayBaseDark1;
+}
+::-webkit-scrollbar-thumb:active {
+  background: $grayBaseDark1;
+}
+::-webkit-scrollbar-track {
+  background: $commonBgColor;
+  border-radius: 0.2rem;
+}
+::-webkit-scrollbar-track:hover {
+  background: $commonBgColor;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+/* scrollbar */

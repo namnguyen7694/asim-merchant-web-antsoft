@@ -1,0 +1,39 @@
+.block-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  &-inner {
+    margin: auto;
+    max-width: 90%;
+    @include from1200_ {
+      max-width: 118rem;
+    }
+    @include mb_ {
+      width: 95%;
+      max-width: 95%;
+    }
+  }
+}
+
+.d_flex {
+  display: flex;
+  align-items: center;
+  &.sp_bw {
+    justify-content: space-between;
+  }
+  &.center {
+    justify-content: center;
+  }
+}
+.d_flex_col {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  &.sp_bw {
+    justify-content: space-between;
+  }
+  &.center {
+    justify-content: center;
+  }
+}

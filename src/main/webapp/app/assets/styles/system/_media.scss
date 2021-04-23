@@ -1,0 +1,123 @@
+$xs: 320px;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1601px;
+$designDimension: 1440px;
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) and (min-height: 338px) {
+  html {
+    font-size: 35%;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 35%;
+  }
+}
+
+/* Large devices (Antd lg size: from 992px and up or Ipad 1024px) */
+@media screen and (min-width: 992px) {
+  html {
+    font-size: 45%;
+  }
+}
+
+/*Large devices (Antd xl size: from 1200px and up) */
+@media screen and (min-width: 1201px)  {
+  html {
+    font-size: 50%;
+  }
+}
+/* Extra Large devices (laptops/desktops or Ipad Pro 1366px, from HD 1280px to HD+ 1600px) */
+@media screen and (min-width: 1281px) {
+  html {
+    font-size: 55%;
+  }
+}
+
+/* Extra large devices (large laptops and desktops) */
+@media screen and (min-width: 1601px) {
+  html {
+    font-size: 62.5%;
+  }
+}
+
+@mixin mbxs_ {
+  @media (max-width: 375px) {
+    @content;
+  }
+}
+@mixin mb_ {
+  @media (max-width: #{$sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin from576_ {
+  @media (min-width: #{$sm}) {
+    @content;
+  }
+}
+
+@mixin from768_ {
+  @media (min-width: #{$md}) {
+    @content;
+  }
+}
+
+@mixin from992_ {
+  @media (min-width: #{$lg}) {
+    @content;
+  }
+}
+
+@mixin from1200_ {
+  @media (min-width: #{$xl}) {
+    @content;
+  }
+}
+
+@mixin from1440_ {
+  @media (min-width: #{$designDimension}) {
+    @content;
+  }
+}
+@mixin from1600_ {
+  @media (min-width: #{$xxl}) {
+    @content;
+  }
+}
+
+@mixin menuDashboard_1370 {
+  @media (max-width: 1370px) {
+    @content;
+  }
+}
+
+@mixin menuDashboard_1024 {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+@mixin menuCustomer_1510 {
+  @media (max-width: 1510px) {
+    @content;
+  }
+}
+
+@mixin menuCustomer_1120 {
+  @media (max-width: 1120px) {
+    @content;
+  }
+}
+
+@mixin landscape {
+  @media (max-width: 576px) {
+    @content;
+  }
+}
