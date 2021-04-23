@@ -1,0 +1,20 @@
+.ant-radio-wrapper {
+  .ant-radio-checked {
+    .ant-radio-inner {
+      border-color: $appBase;
+      &::after {
+        background-color: $appBase;
+      }
+    }
+  }
+  .ant-radio {
+    &:hover {
+      .ant-radio-inner {
+        border-color: $appBase;
+        &::after {
+          background-color: $appBase;
+        }
+      }
+    }
+  }
+}

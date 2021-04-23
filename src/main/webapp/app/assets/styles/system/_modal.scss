@@ -1,0 +1,36 @@
+.custom-modal-confirm {
+  .ant-modal-content {
+    padding: 0;
+    border-radius: 12px;
+    border: 2px solid $appBase;
+    .ant-modal-body {
+      padding: 0;
+      .ant-modal-confirm-btns {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+        padding: 2.4rem;
+        margin-top: 0;
+        > button {
+          background-color: transparent;
+          box-shadow: none;
+          width: 40%;
+          padding: 1rem;
+          height: 4.8rem;
+          border-radius: 6px;
+          border: none;
+          &:first-child {
+            border: none;
+            background-color: #ffffff;
+          }
+          &:last-child {
+            background-color: $appBase;
+          }
+          > span {
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+  }
+}

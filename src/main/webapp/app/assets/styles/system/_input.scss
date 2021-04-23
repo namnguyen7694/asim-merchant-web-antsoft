@@ -1,0 +1,294 @@
+/*Text Input (with-Close Icon)*/
+.input {
+  &__text {
+    &-lg.ant-input-affix-wrapper,
+    &-lg .ant-input-group,
+    &-lg.ant-input-number {
+      //Large
+      height: 5.6rem;
+      width: 100%;
+      border-color: #aeb8c7;
+      border-radius: 4px;
+      align-items: center;
+      &:hover {
+        border-color: $grayBaseDark2;
+      }
+      &-focused {
+        border-color: $appBase;
+        box-shadow: $boxShadowInput;
+        &:hover {
+          border-color: $appBase;
+        }
+      }
+      .ant-input,
+      .ant-input-number-input {
+        font-size: 1.8rem;
+        line-height: 156%;
+        color: $grayBaseDark2;
+      }
+      .ant-input-number-input-wrap {
+        height: 100%;
+        .ant-input-number-input {
+          height: 100%;
+        }
+      }
+      .ant-input-clear-icon {
+        margin: 1.5rem 0.5rem;
+      }
+    }
+
+    &-md.ant-input-affix-wrapper,
+    &-md .ant-input-group,
+    &-md.ant-input-number {
+      //Medium
+      height: 4.8rem;
+      width: 100%;
+      border-color: #aeb8c7;
+      border-radius: 4px;
+      align-items: center;
+      &:hover {
+        border-color: $grayBaseDark2;
+      }
+      &-focused {
+        border-color: $appBase;
+        box-shadow: $boxShadowInput;
+        &:hover {
+          border-color: $appBase;
+        }
+      }
+      .ant-input,
+      .ant-input-number-input {
+        font-size: 1.6rem;
+        line-height: 152%;
+        color: $grayBaseDark2;
+      }
+
+      .ant-input-number-input-wrap {
+        height: 100%;
+        .ant-input-number-input {
+          height: 100%;
+        }
+      }
+
+      .ant-input-disabled {
+        color: #aeb8c7;
+      }
+      .ant-input-clear-icon {
+        margin: 1.2rem 0.5rem;
+        font-size: 1.4rem;
+        color: $grayBaseDark2;
+      }
+    }
+
+    &-sm.ant-input-affix-wrapper,
+    &-sm.ant-input-number {
+      //Small
+      height: 3.6rem;
+      width: 100%;
+      border-color: #aeb8c7;
+      border-radius: 4px;
+      align-items: center; // center phần từ prefix và suffix của input
+      &:hover {
+        border-color: $grayBaseDark2;
+      }
+      &-focused {
+        border-color: $appBase;
+        box-shadow: $boxShadowInput;
+        &:hover {
+          border-color: $appBase;
+        }
+      }
+      .ant-input,
+      .ant-input-number-input {
+        font-size: 1.4rem;
+        line-height: 144%;
+        color: $grayBaseDark2;
+      }
+      .ant-input-number-input-wrap {
+        height: 100%;
+        .ant-input-number-input {
+          height: 100%;
+        }
+      }
+      .ant-input-clear-icon {
+        margin: 0.6rem 0.2rem;
+      }
+      .ant-input-suffix {
+        line-height: 2.6rem;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}
+/*Text Input (with-Close Icon)*/
+
+/*Text Input (non-Close Icon)*/
+.ant-input.input {
+  &__text {
+    &-lg {
+      //Large
+      font-size: 1.8rem;
+      line-height: 156%;
+      height: 5.6rem;
+      border-color: #aeb8c7;
+      border-radius: 4px;
+      &:hover {
+        border-color: $grayBaseDark2;
+      }
+      &:focus {
+        border-color: $appBase;
+        box-shadow: $boxShadowInput;
+      }
+    }
+    &-md {
+      //Medium
+      font-size: 1.6rem;
+      line-height: 152%;
+      height: 4.8rem;
+      border-color: #aeb8c7;
+      border-radius: 4px;
+      &:hover {
+        border-color: $grayBaseDark2;
+      }
+      &:focus {
+        border-color: $appBase;
+        box-shadow: $boxShadowInput;
+      }
+    }
+    &-sm {
+      //Small
+      font-size: 1.4rem;
+      line-height: 144%;
+      height: 3.6rem;
+      border-color: #aeb8c7;
+      border-radius: 4px;
+      &:hover {
+        border-color: $grayBaseDark2;
+      }
+      &:focus {
+        border-color: $appBase;
+        box-shadow: $boxShadowInput;
+      }
+    }
+  }
+  /*Text Input (non-Close Icon)*/
+}
+/*Text Input (non-Close Icon)*/
+
+/*text input with prefix*/
+.ant-input-group-wrapper {
+  .ant-input-group {
+    .ant-input {
+      height: inherit;
+      border-radius: 0 4px 4px 0;
+      &:focus {
+        border-color: $appBase;
+        box-shadow: none;
+      }
+    }
+  }
+}
+/*text input with prefix*/
+
+/*Text Input suffix*/
+.ant-input-suffix {
+  margin-left: 4px;
+  display: flex;
+  align-items: center;
+}
+/*Text Input suffix*/
+
+/* text input has error */
+.ant-form-item-has-error {
+  .input {
+    &__text {
+      &-lg.ant-input-affix-wrapper {
+        //Large
+        height: 5.6rem;
+        border-radius: 4px;
+        &:hover {
+          border-color: #ff4d4f;
+        }
+        &-focused {
+          border-color: #ff4d4f;
+          box-shadow: none;
+          &:hover {
+            border-color: #ff4d4f;
+          }
+        }
+        & > .ant-input-prefix,
+        .ant-input-suffix {
+          color: #ff4d4f;
+        }
+      }
+      &-md.ant-input-affix-wrapper {
+        //Medium
+        height: 4.8rem;
+        border-radius: 4px;
+        background: rgba(254, 219, 218, 0.28);
+        & > .ant-input {
+          background-color: transparent;
+        }
+        &:hover {
+          border-color: #ff4d4f;
+        }
+        &-focused {
+          border-color: #ff4d4f;
+          box-shadow: none;
+          &:hover {
+            border-color: #ff4d4f;
+          }
+        }
+        & > .ant-input-prefix,
+        .ant-input-suffix {
+          color: #ff4d4f;
+        }
+      }
+      &-sm.ant-input-affix-wrapper {
+        //Small
+        height: 3.6rem;
+        border-radius: 4px;
+        &:hover {
+          border-color: #ff4d4f;
+        }
+        &-focused {
+          border-color: #ff4d4f;
+          box-shadow: none;
+          &:hover {
+            border-color: #ff4d4f;
+          }
+        }
+        & > .ant-input-prefix,
+        .ant-input-suffix {
+          color: #ff4d4f;
+        }
+      }
+    }
+  }
+}
+
+/*Text Input disabled*/
+.input__text-sm.ant-input-affix-wrapper.ant-input-affix-wrapper-disabled,
+.input__text-md.ant-input-affix-wrapper.ant-input-affix-wrapper-disabled,
+.input__text-lg.ant-input-affix-wrapper.ant-input-affix-wrapper-disabled {
+  background-color: #fafbfd;
+  border: 1px solid #d5dceb;
+  .ant-input.ant-input-disabled {
+    background-color: #fafbfd;
+  }
+}
+
+/* Input Upload*/
+.ant-upload-list-picture-card .ant-upload-list-item {
+  float: left;
+  width: 9.2rem;
+  height: 9.2rem;
+  margin: 0;
+  padding: 0;
+}
+.ant-upload.ant-upload-select-picture-card {
+  height: 4.8rem;
+  width: 4.8rem;
+}
+/* Input Upload*/
