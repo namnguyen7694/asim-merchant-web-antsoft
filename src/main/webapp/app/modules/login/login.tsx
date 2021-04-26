@@ -5,20 +5,23 @@ import { Redirect, RouteComponentProps, useHistory } from "react-router-dom";
 import { IRootState } from "app/shared/reducers";
 import { login } from "app/shared/reducers/authentication";
 import { Button, Form, Input } from "antd";
-import { logInfo } from "react-jhipster";
 
 export interface ILoginProps extends StateProps, DispatchProps, RouteComponentProps<any> {}
 
 export const Login = (props: ILoginProps) => {
   const { location, isAuthenticated } = props;
   const { from } = (location.state as any) || { from: { pathname: "/", search: location.search } };
+  const history = useHistory();
+
   // if (isAuthenticated) {
   //   return <Redirect to={from} />;
   // }
+
   const handleLogin = (username, password, rememberMe = false) => props.login(username, password, rememberMe);
 
   const handleSubmit = (val: any) => {
-    handleLogin(val.username, val.password);
+    // handleLogin(val.username, val.password);
+    history.push("/retailer");
   };
 
   return (

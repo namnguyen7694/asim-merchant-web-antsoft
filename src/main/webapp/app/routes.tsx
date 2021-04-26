@@ -18,6 +18,7 @@ import { Card } from "reactstrap";
 import ErrorBoundary from "./shared/error/error-boundary";
 import Dashboard from "./modules/dashboard/Dashboard";
 import { logDebug } from "react-jhipster";
+import RetailerListing from "./modules/retailer/retailerList/RetailerList";
 
 const Account = Loadable({
   loader: () => import(/* webpackChunkName: "account" */ "app/modules/account"),
@@ -41,6 +42,8 @@ const Routes = () => {
         <ErrorBoundaryRoute path="/account/reset/finish/:key?" component={PasswordResetFinish} />
         <PrivateRoute path="/admin" component={Admin} hasAnyAuthorities={[AUTHORITIES.ADMIN]} />
         <PrivateRoute path="/account" component={Account} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER]} /> */}
+        <ErrorBoundaryRoute path="/" exact component={RetailerListing} />
+        <ErrorBoundaryRoute path="/retailer" exact component={RetailerListing} />
         <ErrorBoundaryRoute path="/dashboard" exact component={Dashboard} />
         {/* <PrivateRoute path="/" component={Entities} hasAnyAuthorities={[AUTHORITIES.USER]} />
         <ErrorBoundaryRoute component={PageNotFound} /> */}

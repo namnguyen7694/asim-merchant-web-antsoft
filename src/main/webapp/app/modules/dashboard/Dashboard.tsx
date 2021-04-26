@@ -9,9 +9,7 @@ export interface IDashboardProps extends StateProps, DispatchProps {}
 
 const Dashboard = (props: IDashboardProps) => {
   // const balance = useSelector<RootState>((state) => state.auth.data.wallet.balance) as number;
-  useEffect(() => {
-    logInfo(1234);
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div className="dashboard" id="dashboard">
       <Spin spinning={false}>

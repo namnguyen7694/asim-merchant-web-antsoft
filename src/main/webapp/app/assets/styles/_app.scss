@@ -147,11 +147,11 @@
 @import "../../modules/dashboard/Dashboard.scss";
 
 // @import "../../app/components/NotFound/NotFound.scss";
-// @import "../../app/components/CustomButton/CustomButton.scss";
+@import "../../shared/layout/CustomButton/CustomButton.scss";
 // @import "../../app/components/FloatingButton/FloatingButton.scss";
 // @import "../../app/components/CustomListCard/CustomItemCard.scss";
-// @import "../../app/components/CustomListing/CustomLlisting.scss";
-// @import "../../app/components/CustomFormItem/CustomFormItem.scss";
+@import "../../shared/layout/CustomList/CustomLlisting.scss";
+@import "../../shared/layout/CustomFormItem/CustomFormItem.scss";
 // @import "../../app/components/OrderCart/OrderCart.scss";
 
 // /* module*/
@@ -159,4 +159,4 @@
 // @import "../../app/modules/dump/DumpComponent.scss";
 // @import "../../app/modules/topup/Topup.scss";
 // @import "../../app/modules/sale/Sale.scss";
-// @import "../../app/modules/retailer/Retailer.scss";
+@import "../../modules/retailer/Retailer.scss";

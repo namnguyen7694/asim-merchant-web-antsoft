@@ -24,9 +24,12 @@ import { routeModel } from "app/shared/util/pagination.constants";
 import { MERCHANT_TYPE } from "app/shared/util/pagination.constants";
 
 const Dashboard = lazy(() => import("app/modules/dashboard/Dashboard"));
+const Retailer = lazy(() => import("app/modules/retailer/retailerList/RetailerList"));
 const img = {
-  dashboardDef: "../../content/images/sidebar/ic_dashboard_act.svg",
+  dashboardDef: "../../content/images/sidebar/ic_dashboard_def.svg",
   dashboardAct: "../../content/images/sidebar/ic_dashboard_act.svg",
+  retailerDef: "../../content/images/sidebar/ic_dashboard_def.svg",
+  retailerAct: "../../content/images/sidebar/ic_retailer_act.svg",
 };
 export const ROUTES: { [key: string]: routeModel } = {
   DASHBOARD: {
@@ -39,6 +42,18 @@ export const ROUTES: { [key: string]: routeModel } = {
     title: "Tổng quan",
     images: { def: img.dashboardDef, act: img.dashboardAct },
     nextDivider: true,
+  },
+  RETAILER: {
+    key: "6",
+    path: {
+      BASE: "/retailer",
+      DISCOUNT: "/retailer/discount",
+      TRANSFER: "/retailer/transfer",
+    },
+    component: Retailer,
+    level: MERCHANT_TYPE.DISTRIBUTOR,
+    title: "Quản lý đại lý",
+    images: { def: img.retailerDef, act: img.retailerAct },
   },
 };
 
