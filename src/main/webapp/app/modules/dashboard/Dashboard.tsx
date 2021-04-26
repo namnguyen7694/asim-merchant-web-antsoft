@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Spin } from "antd";
 import { connect } from "react-redux";
 import { IRootState } from "app/shared/reducers";
+import { logDebug, logInfo } from "react-jhipster";
 // import { RootState } from "app/store/config/rootReducer";
 
 export interface IDashboardProps extends StateProps, DispatchProps {}
 
 const Dashboard = (props: IDashboardProps) => {
   // const balance = useSelector<RootState>((state) => state.auth.data.wallet.balance) as number;
+  useEffect(() => {
+    logInfo(1234);
+  }, []);
   return (
     <div className="dashboard" id="dashboard">
       <Spin spinning={false}>
@@ -17,7 +21,7 @@ const Dashboard = (props: IDashboardProps) => {
           <div className="d_flex sp_bw">
             <div className="dashboard-content__overview balance">
               <p>Số dư tài khoản</p>
-              <h1>{props.balance.toLocaleString()} đ</h1>
+              <h1>{123} đ</h1>
             </div>
             <div className="dashboard-content__overview balance-retailer">
               <p>Tổng số dư của tất cả đại lý</p>

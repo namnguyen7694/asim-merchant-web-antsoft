@@ -1,6 +1,6 @@
 import { lazy } from "react";
 import { routeModel } from "app/shared/util/pagination.constants";
-// import dashboardDef from "app/assets/images/sidebar/ic_dashboard_act.svg";
+// import dashboardDef from "../../content/images/sidebar/ic_dashboard_act.svg";
 
 // import dashboardAct from "assets/images/sidebar/ic_dashboard_act.svg";
 
@@ -24,19 +24,22 @@ import { routeModel } from "app/shared/util/pagination.constants";
 import { MERCHANT_TYPE } from "app/shared/util/pagination.constants";
 
 const Dashboard = lazy(() => import("app/modules/dashboard/Dashboard"));
-
+const img = {
+  dashboardDef: "../../content/images/sidebar/ic_dashboard_act.svg",
+  dashboardAct: "../../content/images/sidebar/ic_dashboard_act.svg",
+};
 export const ROUTES: { [key: string]: routeModel } = {
-  // DASHBOARD: {
-  //   key: "1",
-  //   path: {
-  //     BASE: "/dashboard",
-  //   },
-  //   component: Dashboard,
-  //   level: MERCHANT_TYPE.RETAILER,
-  //   title: "Tổng quan",
-  //   images: { def: dashboardDef, act: dashboardAct },
-  //   nextDivider: true,
-  // },
+  DASHBOARD: {
+    key: "1",
+    path: {
+      BASE: "/dashboard",
+    },
+    component: Dashboard,
+    level: MERCHANT_TYPE.RETAILER,
+    title: "Tổng quan",
+    images: { def: img.dashboardDef, act: img.dashboardAct },
+    nextDivider: true,
+  },
 };
 
 export const AUTH_ROUTES = {

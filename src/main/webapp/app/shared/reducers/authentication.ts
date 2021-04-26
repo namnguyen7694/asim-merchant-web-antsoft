@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Storage } from 'react-jhipster';
+import { logDebug, Storage } from 'react-jhipster';
 
 import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
 

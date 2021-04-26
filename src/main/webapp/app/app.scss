@@ -1,7 +1,10 @@
 // Override Boostrap variables
 // Import Bootstrap source files from node_modules
-@import 'node_modules/bootstrap/scss/bootstrap';
-@import './assets/styles/index.scss';
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "./assets/styles/index.scss";
+html {
+  font-size: 10px;
+}
 // body {
 //   background: #fafafa;
 //   margin: 0;

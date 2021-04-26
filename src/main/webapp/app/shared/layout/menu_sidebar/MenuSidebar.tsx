@@ -1,41 +1,100 @@
-import React from 'react';
-import MenuItem from 'app/shared/layout/menus/menu-item';
-import { DropdownItem } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Menu } from 'antd';
+import React from "react";
+import { Menu } from "antd";
+import { ROUTES } from "app/routes/appRoutes";
+import { connect, MapStateToProps } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { MERCHANT_TYPE } from "app/shared/util/pagination.constants";
+import { IRootState } from "app/shared/reducers";
 
-// const adminMenuItems = (
-//   <>
-//     <MenuItem icon="users" to="/admin/user-management">
-//       User management
-//     </MenuItem>
-//     {/* jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here */}
-//   </>
-// );
+const { SubMenu } = Menu;
 
-// const openAPIItem = (
-//   <MenuItem icon="book" to="/admin/docs">
-//     API
-//   </MenuItem>
-// );
+export interface IMenuSidebarProps extends StateProps, DispatchProps {}
 
-// const databaseItem = (
-//   <DropdownItem tag="a" href="./h2-console/" target="_tab">
-//     <FontAwesomeIcon icon="database" fixedWidth /> Database
-//   </DropdownItem>
-// );
+export const MenuSidebar = (props: IMenuSidebarProps) => {
+  const authRoute = (level: number) => {
+    // const auth: boolean = true;
+    // if (props.auth.data.merchant_profile?.type === MERCHANT_TYPE.DISTRIBUTOR) {
+    //   auth = true;
+    // } else if (props.auth.data.merchant_profile?.type === level) {
+    //   auth = true;
+    // }
+    return true;
+  };
 
-export const MenuSidebar = ({ showOpenAPI, showDatabase }) => (
-  <>
+  const _activeRoute = (routeName: any, childrens?: any) => {
+    // if (routeName === "/") {
+    //   return props.history.location.pathname === routeName;
+    // } else {
+    //   return props.history.location.pathname.indexOf(routeName) > -1 ? true : false;
+    // }
+    return true;
+  };
+
+  return (
     <Menu
       // defaultSelectedKeys={this.getDefaultSelectedKeys().key}
       // defaultOpenKeys={this.getDefaultSelectedKeys().open}
       // selectedKeys={this.getDefaultSelectedKeys().key}
-      theme={'light'}
-      mode={'inline'}
+      theme={"light"}
+      mode={"inline"}
       className="layout__menu"
-    ></Menu>
-  </>
-);
+    >
+      {Object.values(ROUTES).map((route, index: number) =>
+        route.subMenu
+          ? authRoute(route.level) && (
+              <SubMenu
+                key={route.key}
+                title={
+                  <>
+                    {route.images && <img src={route.images.def} alt="icon_menu" />}
+                    <span>{route.title}</span>
+                  </>
+                }
+              >
+                {Object.values(route.subMenu).map((sub, idx) => (
+                  <Menu.Item key={sub.key} title={sub.title}>
+                    <NavLink exact={true} title="" to={sub.path.BASE}>
+                      <span>{sub.title}</span>
+                    </NavLink>
+                  </Menu.Item>
+                ))}
+              </SubMenu>
+            )
+          : authRoute(route.level) && (
+              <Menu.Item key={route.key} title={route.title}>
+                <NavLink exact={true} title="" to={route.path.BASE}>
+                  {route.images && (
+                    <img src={_activeRoute(route.path.BASE) ? route.images.act : route.images.def} alt="icon_menu" />
+                  )}
+                  <span>{route.title}</span>
+                </NavLink>
+              </Menu.Item>
+            )
+      )}
+    </Menu>
+  );
+};
 
-export default MenuSidebar;
+// export default MenuSidebar;
+// export default connect<MapStateToProps, MapDispatchToProps, AppLayoutModule.Props>(
+//   (state: RootState) => {
+//     return {
+//       auth: state.auth,
+//     };
+//   },
+//   (dispatch: Dispatch) => {
+//     return {
+//       actions: bindActionCreators(Object.assign(sagaActions), dispatch),
+//     };
+//   }
+// )(MenuSidebar);
+const mapStateToProps = (storeState: IRootState) => ({
+  auth: storeState.userManagement.user,
+});
+
+const mapDispatchToProps = {};
+
+type StateProps = ReturnType<typeof mapStateToProps>;
+type DispatchProps = typeof mapDispatchToProps;
+
+export default connect(mapStateToProps, mapDispatchToProps)(MenuSidebar);
