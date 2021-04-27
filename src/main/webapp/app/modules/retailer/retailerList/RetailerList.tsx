@@ -129,7 +129,20 @@ const RetailerListing = (props: RetailerListingProps) => {
     return () => {};
   }, []);
 
-  const retailerList = props.retailerList ? props.retailerList?.listing.data : [];
+  const retailerList = [
+    {
+      id: 0,
+      username: "Nguyễn Trần Công Duy",
+      merchant_profile: {
+        merchant_name: "AntSoft",
+        represent_name: "AntSoft",
+        represent_phone_number: "0123456789",
+      },
+      user_wallet: {
+        balance: "1.000.000.000",
+      },
+    },
+  ];
   return (
     <div className="listing">
       <div className="listing-toolbar">
@@ -252,7 +265,7 @@ const RetailerListing = (props: RetailerListingProps) => {
                     key={index}
                     data={ctm}
                     handleSelectItem={handleSelectItem}
-                    defaulSelect={selectingItem.includes(ctm.id.toString())}
+                    defaulSelect={selectingItem ? selectingItem.includes(ctm.id.toString()) : null}
                     index={index + 1}
                     handleUpdateItem={handleUpdateItem}
                   />

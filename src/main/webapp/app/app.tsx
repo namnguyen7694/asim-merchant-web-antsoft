@@ -15,7 +15,7 @@ import { hasAnyAuthority } from "app/shared/auth/private-route";
 import { AUTHORITIES } from "app/config/constants";
 
 import ErrorBoundaryRoute from "./shared/error/error-boundary-route";
-import Login from "app/modules/login/Login";
+import Login from "app/modules/Login/Login";
 import MenuSidebar from "./shared/layout/MenuSidebar/MenuSidebar";
 import { Avatar, Badge, Card, Dropdown, Layout, Menu } from "antd";
 import ErrorBoundary from "./shared/error/error-boundary";

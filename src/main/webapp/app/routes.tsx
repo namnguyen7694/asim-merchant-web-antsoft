@@ -1,23 +1,9 @@
 import React, { useEffect } from "react";
-import { Router, Switch } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import Loadable from "react-loadable";
 
-import Login from "app/modules/login/Login";
-import Register from "app/modules/account/register/register";
-import Activate from "app/modules/account/activate/activate";
-import PasswordResetInit from "app/modules/account/password-reset/init/password-reset-init";
-import PasswordResetFinish from "app/modules/account/password-reset/finish/password-reset-finish";
-import Logout from "app/modules/login/logout";
-import Home from "app/modules/home/home";
-import Entities from "app/entities";
-import PrivateRoute from "app/shared/auth/private-route";
 import ErrorBoundaryRoute from "app/shared/error/error-boundary-route";
-import PageNotFound from "app/shared/error/page-not-found";
-import { AUTHORITIES } from "app/config/constants";
-import { Card } from "reactstrap";
-import ErrorBoundary from "./shared/error/error-boundary";
 import Dashboard from "./modules/dashboard/Dashboard";
-import { logDebug } from "react-jhipster";
 import RetailerListing from "./modules/Retailer/RetailerList/RetailerList";
 
 const Account = Loadable({

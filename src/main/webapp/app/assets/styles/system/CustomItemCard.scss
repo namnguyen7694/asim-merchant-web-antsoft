@@ -1,0 +1,106 @@
+.custom-item-card {
+  margin-bottom: 0;
+  border-left: none;
+  border-right: none;
+  &:hover {
+    box-shadow: $boxShadowCard;
+    cursor: pointer;
+    z-index: 10;
+  }
+  .ant-card-body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    width: 100%;
+    height: 6rem;
+    .ant-card-meta-avatar {
+      padding-right: 3.2rem;
+    }
+    .ant-card-meta-detail {
+      width: 100%;
+    }
+    > a,
+    > div {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  &--meta {
+    width: 30rem;
+    align-items: center;
+    display: flex;
+    .ant-avatar.ant-avatar-icon {
+      height: 4rem;
+      width: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .ant-avatar-image {
+      height: 4rem;
+      width: 4rem;
+      object-fit: cover;
+    }
+    .ant-card-meta-title {
+      color: $textBaseDark;
+      font-size: 1.6rem;
+    }
+    .ant-card-meta-description {
+      font-size: 1.6rem;
+    }
+  }
+  &--info {
+    width: 10%;
+    display: flex;
+    &.w-5 {
+      width: 5%;
+    }
+    &.w-15 {
+      width: 15%;
+    }
+    &.w-20 {
+      width: 20%;
+    }
+    &.w-25 {
+      width: 25%;
+    }
+    &.w-30 {
+      width: 30%;
+    }
+    .ant-card-meta-title {
+      font-size: 1.4rem;
+      line-height: 156%;
+      color: $textBaseDark;
+      font-weight: normal;
+    }
+    &.retailer-card-status {
+      border-radius: 20px;
+      padding: 5px;
+      &.active {
+        color: #0a65ff;
+        background: #e9efff;
+      }
+      &.inactive {
+        color: #86898c;
+        background: #ebebec;
+      }
+
+      .ant-card-meta-title {
+        text-align: center;
+        background-color: inherit;
+        color: inherit;
+        text-transform: capitalize;
+      }
+    }
+    &.button-base-dark {
+      align-items: center;
+      height: 4rem;
+      span {
+        width: 100%;
+      }
+    }
+  }
+}
