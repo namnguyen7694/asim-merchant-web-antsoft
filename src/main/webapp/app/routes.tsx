@@ -5,6 +5,7 @@ import Loadable from "react-loadable";
 import ErrorBoundaryRoute from "app/shared/error/error-boundary-route";
 import Dashboard from "./modules/dashboard/Dashboard";
 import RetailerListing from "./modules/Retailer/RetailerList/RetailerList";
+import { ROUTES } from "./routes/appRoutes";
 
 const Account = Loadable({
   loader: () => import(/* webpackChunkName: "account" */ "app/modules/account"),

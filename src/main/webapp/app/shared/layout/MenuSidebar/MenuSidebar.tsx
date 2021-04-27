@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu } from "antd";
+import { Divider, Menu } from "antd";
 import { ROUTES } from "app/routes/appRoutes";
 import { connect, MapStateToProps } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -39,55 +39,45 @@ export const MenuSidebar = (props: IMenuSidebarProps) => {
       mode={"inline"}
       className="layout__menu"
     >
-      {Object.values(ROUTES).map((route, index: number) =>
-        route.subMenu
-          ? authRoute(route.level) && (
-              <SubMenu
-                key={route.key}
-                title={
-                  <>
-                    {route.images && <img src={route.images.def} alt="icon_menu" />}
+      {Object.values(ROUTES).map((route, index: number) => (
+        <>
+          {route.subMenu
+            ? authRoute(route.level) && (
+                <SubMenu
+                  key={route.key}
+                  title={
+                    <>
+                      {route.images && <img src={route.images.def} alt="icon_menu" />}
+                      <span>{route.title}</span>
+                    </>
+                  }
+                >
+                  {Object.values(route.subMenu).map((sub, idx) => (
+                    <Menu.Item key={sub.key} title={sub.title}>
+                      <NavLink exact={true} title="" to={sub.path.BASE}>
+                        <span>{sub.title}</span>
+                      </NavLink>
+                    </Menu.Item>
+                  ))}
+                </SubMenu>
+              )
+            : authRoute(route.level) && (
+                <Menu.Item key={route.key} title={route.title}>
+                  <NavLink exact={true} title="" to={route.path.BASE}>
+                    {route.images && (
+                      <img src={_activeRoute(route.path.BASE) ? route.images.act : route.images.def} alt="icon_menu" />
+                    )}
                     <span>{route.title}</span>
-                  </>
-                }
-              >
-                {Object.values(route.subMenu).map((sub, idx) => (
-                  <Menu.Item key={sub.key} title={sub.title}>
-                    <NavLink exact={true} title="" to={sub.path.BASE}>
-                      <span>{sub.title}</span>
-                    </NavLink>
-                  </Menu.Item>
-                ))}
-              </SubMenu>
-            )
-          : authRoute(route.level) && (
-              <Menu.Item key={route.key} title={route.title}>
-                <NavLink exact={true} title="" to={route.path.BASE}>
-                  {route.images && (
-                    <img src={_activeRoute(route.path.BASE) ? route.images.act : route.images.def} alt="icon_menu" />
-                  )}
-                  <span>{route.title}</span>
-                </NavLink>
-              </Menu.Item>
-            )
-      )}
+                  </NavLink>
+                </Menu.Item>
+              )}
+          {!!route.nextDivider && <Divider></Divider>}
+        </>
+      ))}
     </Menu>
   );
 };
 
-// export default MenuSidebar;
-// export default connect<MapStateToProps, MapDispatchToProps, AppLayoutModule.Props>(
-//   (state: RootState) => {
-//     return {
-//       auth: state.auth,
-//     };
-//   },
-//   (dispatch: Dispatch) => {
-//     return {
-//       actions: bindActionCreators(Object.assign(sagaActions), dispatch),
-//     };
-//   }
-// )(MenuSidebar);
 const mapStateToProps = (storeState: IRootState) => ({
   auth: storeState.userManagement.user,
 });

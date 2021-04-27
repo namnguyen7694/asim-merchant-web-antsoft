@@ -19,7 +19,7 @@ const Dashboard = (props: IDashboardProps) => {
           <div className="d_flex sp_bw">
             <div className="dashboard-content__overview balance">
               <p>Số dư tài khoản</p>
-              <h1>{123} đ</h1>
+              <h1>{10000} đ</h1>
             </div>
             <div className="dashboard-content__overview balance-retailer">
               <p>Tổng số dư của tất cả đại lý</p>

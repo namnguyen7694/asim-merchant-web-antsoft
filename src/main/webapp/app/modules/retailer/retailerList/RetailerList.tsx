@@ -1,4 +1,4 @@
-import { Divider, Drawer, Input } from "antd";
+import { Col, Divider, Drawer, Input, Row } from "antd";
 import React, { Component, useEffect, useState } from "react";
 import _ from "lodash";
 
@@ -6,7 +6,7 @@ import _ from "lodash";
 // import icon_menu from "content/images/icon/ic_menu.svg";
 // import icon_retailer from "content/images/icon/ic_retailer.svg";
 // import icon_discount from "content/images/icon/ic_discount.svg";
-// import icon_transfer from "content/images/icon/ic_transfer.svg";
+
 import { ROUTES } from "app/routes/appRoutes";
 import ListHeading from "app/shared/layout/CustomList/ListHeading";
 import ListPagination from "app/shared/layout/CustomList/ListPagination";
@@ -33,6 +33,13 @@ export interface RetailerListingProps extends StateProps, DispatchProps {
   //   retailerList: any;
   retailerList: RetailerListReducerType;
   loadRetailers: (payload: commonRequestFilter, filter?: { [key: string]: any }) => void;
+}
+interface ILoadList {
+  page_number?: number;
+  page_size?: number;
+  key_word?: string;
+  start_date?: string;
+  end_date?: string;
 }
 
 const RetailerListing = (props: RetailerListingProps) => {
@@ -98,7 +105,7 @@ const RetailerListing = (props: RetailerListingProps) => {
       //   });
       setEndDate("");
       setStartDate("");
-      //   loadListing();
+      loadListing();
     }
   };
 
@@ -109,14 +116,14 @@ const RetailerListing = (props: RetailerListingProps) => {
     loadListing();
   };
 
-  const loadListing = (page_number?, page_size?, key_word?, start_date?, end_date?) => {
+  const loadListing = (param?: ILoadList) => {
     !!props.loadRetailers &&
       props.loadRetailers({
-        page_number: page_number ?? pageNumber,
-        page_size: page_size ?? pageSize,
-        keyword: key_word ?? keyword,
-        start_date: start_date ?? startDate,
-        end_date: end_date ?? endDate,
+        page_number: param?.page_number ?? pageNumber,
+        page_size: param?.page_size ?? pageSize,
+        keyword: param?.key_word ?? keyword,
+        start_date: param?.start_date ?? startDate,
+        end_date: param?.end_date ?? endDate,
       });
   };
 
@@ -139,143 +146,149 @@ const RetailerListing = (props: RetailerListingProps) => {
         represent_phone_number: "0123456789",
       },
       user_wallet: {
-        balance: "1.000.000.000",
+        balance: 1000000000,
       },
     },
   ];
   return (
     <div className="listing">
-      <div className="listing-toolbar">
-        <h2>Quản lý đại lý</h2>
-        <ToolbarSubMenu
-          menuItem={[
-            {
-              title: "Đại lý",
-              icon: icon_retailer,
-              pathName: ROUTES.RETAILER.path.BASE,
-            },
-            {
-              title: "Chiết khấu",
-              icon: icon_discount,
-              pathName: ROUTES.RETAILER.path.DISCOUNT,
-            },
-            {
-              title: "Chuyển tiền cho đại lý",
-              icon: icon_transfer,
-              pathName: ROUTES.RETAILER.path.TRANSFER,
-            },
-          ]}
-          header={{ title: "Danh mục", icon: icon_menu }}
-          onChange={setMenuItem}
-        />
-
-        <div className="listing-toolbar__filter">
-          <img src="content/images/icon/ic_filter.svg" alt="filter" />
-          <h3>Bộ lọc</h3>
-          <CustomButton
-            // onClick={() => setState({ pageNumber: 1 }, () => loadListing())}
-            onClick={() => {
-              setPageNumber(1);
-              loadListing();
-            }}
-            item="Áp dụng"
-            type="secondary"
-            size="medium"
-            style={{ width: "100%" }}
-          />
-
-          <Divider />
-          <div style={{ marginTop: "4rem" }}>
-            <CustomRangePicker
-              startDate={startDate}
-              endDate={endDate}
-              handleChangeDateRange={handleChangeDateRange}
-              title="Thời gian"
-            />
-          </div>
-          <Divider />
-
-          <div className="filter_group">
-            <CustomCheckboxGroup
-              title="Trạng thái:"
-              defaultCheckedList={filterStatusOptions()}
-              plainOptions={filterStatusOptions()}
-              handleChange={(val) => {
-                // setState({ status: val ? val.map((v) => v) : undefined });
-                setStatus(val.length ? val[0] : "[]");
-              }}
-            />
-          </div>
-        </div>
-      </div>
-      {menuItem === 0 && (
-        <div className="listing-main">
-          <ListPagination
-            pageNumber={pageNumber}
-            total={props.retailerList ? props.retailerList.listing.total : 0}
-            pageSize={pageSize}
-            onShowSizeChange={onShowSizeChange}
-            handleChangePage={(page_number) => {
-              loadListing();
-              setPageNumber(page_number);
-            }}
-            //   handleChangePage={(pageNumber) => setState({ pageNumber }, () => loadListing())}
-            length={props.retailerList ? props.retailerList.listing.data.length : 0}
-          />
-          <div className="listing-main__container">
-            <div className="d_flex sp_bw">
-              <Input
-                placeholder="Chưa làm search"
-                allowClear
-                // defaultValue={keyword!}
-                onChange={(event) => {
-                  const key = event.target.value;
-                  if (key.trim() !== "") {
-                    debounceSearch(key);
-                  } else {
-                    debounceSearch(undefined);
-                  }
-                }}
-              />
-              <CustomButton
-                item={"+ Tạo mới"}
-                type="primary"
-                size="small"
-                onClick={handleCreateItem}
-                style={{ width: "16rem" }}
-              />
-            </div>
-            <ListHeading
-              column={[
-                { name: "STT" },
-                { name: "Tên đại lý", width: "25%" },
-                { name: "Tên đăng nhập", width: "15%" },
-                { name: "Người liên hệ", width: "15%" },
-                { name: "Số điện thoại", width: "15%" },
-                { name: "Số dư (VNĐ)" },
-                { name: "Trạng Thái", align: "center" },
+      <Row gutter={[24, 0]}>
+        <Col span={5}>
+          <div className="listing-toolbar">
+            <h2>Quản lý đại lý</h2>
+            <ToolbarSubMenu
+              menuItem={[
+                {
+                  title: "Đại lý",
+                  icon: icon_retailer,
+                  pathName: ROUTES.RETAILER.path.BASE,
+                },
+                {
+                  title: "Chiết khấu",
+                  icon: icon_discount,
+                  pathName: ROUTES.RETAILER.path.DISCOUNT,
+                },
+                {
+                  title: "Chuyển tiền cho đại lý",
+                  icon: icon_transfer,
+                  pathName: ROUTES.RETAILER.path.TRANSFER,
+                },
               ]}
-              useCheckAll={false}
+              header={{ title: "Danh mục", icon: icon_menu }}
+              onChange={setMenuItem}
             />
 
-            {retailerList.length > 0 && (
-              <div className="listing-main__container--listing">
-                {retailerList?.map((ctm, index) => (
-                  <RetailerCard
-                    key={index}
-                    data={ctm}
-                    handleSelectItem={handleSelectItem}
-                    defaulSelect={selectingItem ? selectingItem.includes(ctm.id.toString()) : null}
-                    index={index + 1}
-                    handleUpdateItem={handleUpdateItem}
-                  />
-                ))}
+            <div className="listing-toolbar__filter">
+              <img src="content/images/icon/ic_filter.svg" alt="filter" />
+              <h3>Bộ lọc</h3>
+              <CustomButton
+                // onClick={() => setState({ pageNumber: 1 }, () => loadListing())}
+                onClick={() => {
+                  setPageNumber(1);
+                  loadListing();
+                }}
+                item="Áp dụng"
+                type="secondary"
+                size="medium"
+                style={{ width: "100%" }}
+              />
+
+              <Divider />
+              <div style={{ marginTop: "4rem" }}>
+                <CustomRangePicker
+                  startDate={startDate}
+                  endDate={endDate}
+                  handleChangeDateRange={handleChangeDateRange}
+                  title="Thời gian"
+                />
               </div>
-            )}
-            {retailerList.length === 0 && <NullListing type="Lịch sử bán hàng" />}
+              <Divider />
+
+              <div className="filter_group">
+                <CustomCheckboxGroup
+                  title="Trạng thái:"
+                  defaultCheckedList={filterStatusOptions()}
+                  plainOptions={filterStatusOptions()}
+                  handleChange={(val) => {
+                    // setState({ status: val ? val.map((v) => v) : undefined });
+                    setStatus(val.length ? val[0] : "[]");
+                  }}
+                />
+              </div>
+            </div>
           </div>
-        </div>
-      )}
+        </Col>
+        <Col span={19}>
+          {menuItem === 0 && (
+            <div className="listing-main">
+              <ListPagination
+                pageNumber={pageNumber}
+                total={props.retailerList ? props.retailerList.listing.total : 0}
+                pageSize={pageSize}
+                onShowSizeChange={onShowSizeChange}
+                handleChangePage={(page_number) => {
+                  loadListing();
+                  setPageNumber(page_number);
+                }}
+                //   handleChangePage={(pageNumber) => setState({ pageNumber }, () => loadListing())}
+                length={props.retailerList ? props.retailerList.listing.data.length : 0}
+              />
+              <div className="listing-main__container">
+                <div className="d_flex sp_bw">
+                  <Input
+                    placeholder="Chưa làm search"
+                    allowClear
+                    // defaultValue={keyword!}
+                    onChange={(event) => {
+                      const key = event.target.value;
+                      if (key.trim() !== "") {
+                        debounceSearch(key);
+                      } else {
+                        debounceSearch(undefined);
+                      }
+                    }}
+                  />
+                  <CustomButton
+                    item={"+ Tạo mới"}
+                    type="primary"
+                    size="small"
+                    onClick={handleCreateItem}
+                    style={{ width: "16rem" }}
+                  />
+                </div>
+                <ListHeading
+                  column={[
+                    { name: "STT" },
+                    { name: "Tên đại lý", width: "25%" },
+                    { name: "Tên đăng nhập", width: "15%" },
+                    { name: "Người liên hệ", width: "15%" },
+                    { name: "Số điện thoại", width: "15%" },
+                    { name: "Số dư (VNĐ)" },
+                    { name: "Trạng Thái", align: "center" },
+                  ]}
+                  useCheckAll={false}
+                />
+
+                {retailerList.length > 0 && (
+                  <div className="listing-main__container--listing">
+                    {retailerList?.map((ctm, index) => (
+                      <RetailerCard
+                        key={index}
+                        data={ctm}
+                        handleSelectItem={handleSelectItem}
+                        defaulSelect={selectingItem ? selectingItem.includes(ctm.id.toString()) : null}
+                        index={index + 1}
+                        handleUpdateItem={handleUpdateItem}
+                      />
+                    ))}
+                  </div>
+                )}
+                {retailerList.length === 0 && <NullListing type="Lịch sử bán hàng" />}
+              </div>
+            </div>
+          )}
+        </Col>
+      </Row>
 
       <Drawer width={960} onClose={onCloseDrawer} visible={visibleDrawer} footer={null} destroyOnClose>
         <RetailerForm

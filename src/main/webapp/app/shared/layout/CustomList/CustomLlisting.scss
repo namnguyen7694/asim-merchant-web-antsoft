@@ -1,9 +1,9 @@
 .listing {
-  display: flex;
+  // display: flex;
   // padding: 2.4rem 2.4rem;
   &-toolbar {
-    width: 29.6rem;
-    margin-right: 2.4rem;
+    // width: 29.6rem;
+    // margin-right: 2.4rem;
     h2 {
       margin-bottom: 0.7rem;
       font-size: 2.8rem;
@@ -12,6 +12,7 @@
       background-color: #ffffff;
       margin-bottom: 1.2rem;
       padding: 1.6rem;
+      margin-top: 1.8rem;
       > div {
         display: flex;
         align-items: center;
@@ -103,6 +104,7 @@
       }
     }
     &__container {
+      margin-top: 1rem;
       flex-direction: column;
       width: 100%;
       overflow-y: hidden;
