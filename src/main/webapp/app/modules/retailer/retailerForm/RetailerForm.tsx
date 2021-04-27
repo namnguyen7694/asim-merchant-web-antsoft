@@ -195,9 +195,18 @@ const RetailerForm = (props: RetailerFormProps) => {
                 />
               </Col>
 
-              <Col lg={24}>
+              <Col lg={8}>
                 <CustomTextInputItem
                   title="Địa chỉ"
+                  name="merchant_address"
+                  rules={[{ required: true, message: "Địa chỉ là trường bắt buộc" }]}
+                  placeholder={"Nhập địa chỉ, tên đường"}
+                  disabled={props.formType === "update"}
+                />
+              </Col>
+              <Col lg={8}>
+                <CustomTextInputItem
+                  title="Đường"
                   name="merchant_address"
                   rules={[{ required: true, message: "Địa chỉ là trường bắt buộc" }]}
                   placeholder={"Nhập địa chỉ, tên đường"}
@@ -254,7 +263,6 @@ const RetailerForm = (props: RetailerFormProps) => {
                   disabled={props.formType === "update"}
                 />
               </Col>
-              <Divider />
               <Col lg={24}>
                 <h2>Thông tin liên hệ</h2>
               </Col>

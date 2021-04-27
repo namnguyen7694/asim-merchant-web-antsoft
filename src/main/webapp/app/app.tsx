@@ -93,7 +93,7 @@ export const App = (props: IAppProps) => {
               <Content>
                 <div className="app-container" style={{ paddingTop }}>
                   <div className="layout__sider--contact" id="app-view-container">
-                    <Card className="jh-card">
+                    <Card className="jh-card" bordered={false}>
                       <Routes />
                     </Card>
                   </div>
