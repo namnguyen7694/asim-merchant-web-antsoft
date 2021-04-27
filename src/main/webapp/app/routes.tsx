@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Router, Switch } from "react-router-dom";
 import Loadable from "react-loadable";
 
-import Login from "app/modules/login/login";
+import Login from "app/modules/login/Login";
 import Register from "app/modules/account/register/register";
 import Activate from "app/modules/account/activate/activate";
 import PasswordResetInit from "app/modules/account/password-reset/init/password-reset-init";
@@ -18,7 +18,7 @@ import { Card } from "reactstrap";
 import ErrorBoundary from "./shared/error/error-boundary";
 import Dashboard from "./modules/dashboard/Dashboard";
 import { logDebug } from "react-jhipster";
-import RetailerListing from "./modules/retailer/retailerList/RetailerList";
+import RetailerListing from "./modules/Retailer/RetailerList/RetailerList";
 
 const Account = Loadable({
   loader: () => import(/* webpackChunkName: "account" */ "app/modules/account"),

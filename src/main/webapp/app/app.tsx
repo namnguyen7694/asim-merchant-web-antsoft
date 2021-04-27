@@ -15,11 +15,11 @@ import { hasAnyAuthority } from "app/shared/auth/private-route";
 import { AUTHORITIES } from "app/config/constants";
 
 import ErrorBoundaryRoute from "./shared/error/error-boundary-route";
-import Login from "app/modules/login/login";
-import MenuSidebar from "./shared/layout/menu_sidebar/MenuSidebar";
+import Login from "app/modules/login/Login";
+import MenuSidebar from "./shared/layout/MenuSidebar/MenuSidebar";
 import { Avatar, Badge, Card, Dropdown, Layout, Menu } from "antd";
 import ErrorBoundary from "./shared/error/error-boundary";
-import Routes from "./routes";
+import Routes from "./Routes";
 import { Header } from "antd/lib/layout/layout";
 import { logDebug } from "react-jhipster";
 import { MessageOutlined } from "@ant-design/icons";

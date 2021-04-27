@@ -2,11 +2,11 @@ import { Divider, Drawer, Input } from "antd";
 import React, { Component, useEffect, useState } from "react";
 import _ from "lodash";
 
-// import icon_filter from "assets/images/icon/ic_filter.svg";
-// import icon_menu from "assets/images/icon/ic_menu.svg";
-// import icon_retailer from "assets/images/icon/ic_retailer.svg";
-// import icon_discount from "assets/images/icon/ic_discount.svg";
-// import icon_transfer from "assets/images/icon/ic_transfer.svg";
+// import icon_filter from "content/images/icon/ic_filter.svg";
+// import icon_menu from "content/images/icon/ic_menu.svg";
+// import icon_retailer from "content/images/icon/ic_retailer.svg";
+// import icon_discount from "content/images/icon/ic_discount.svg";
+// import icon_transfer from "content/images/icon/ic_transfer.svg";
 import { ROUTES } from "app/routes/appRoutes";
 import ListHeading from "app/shared/layout/CustomList/ListHeading";
 import ListPagination from "app/shared/layout/CustomList/ListPagination";
@@ -19,8 +19,14 @@ import { commonRequestFilter } from "app/shared/util/requets.model";
 import { connect } from "react-redux";
 import { IRootState } from "app/shared/reducers";
 import { RetailerListReducerType, RetailerOutputModel } from "../retailerTypes";
-import RetailerForm from "../retailerForm/RetailerForm";
+import RetailerForm from "../RetailerForm/RetailerForm";
+import ToolbarSubMenu from "app/shared/layout/ToolbarSubMenu/ToolbarSubMenu";
 // import RetailerForm from "./RetailerForm";
+
+const icon_menu = "content/images/icon/ic_menu.svg";
+const icon_retailer = "content/images/icon/ic_retailer.svg";
+const icon_discount = "content/images/icon/ic_discount.svg";
+const icon_transfer = "content/images/icon/ic_transfer.svg";
 
 export interface RetailerListingProps extends StateProps, DispatchProps {
   history: any;
@@ -40,7 +46,7 @@ const RetailerListing = (props: RetailerListingProps) => {
   const [endDate, setEndDate] = useState<string>("");
   const [startDate, setStartDate] = useState<string>("");
   const [status, setStatus] = useState<string>("");
-
+  const [menuItem, setMenuItem] = useState<0 | 1 | 2>(0);
   const handleCreateItem = () => {
     setVisibleDrawer(true);
     setDrawerType("create");
@@ -128,26 +134,27 @@ const RetailerListing = (props: RetailerListingProps) => {
     <div className="listing">
       <div className="listing-toolbar">
         <h2>Quản lý đại lý</h2>
-        {/* <ToolbarSubMenu
-            menuItem={[
-              {
-                title: "Đại lý",
-                icon: icon_retailer,
-                pathName: ROUTES.RETAILER.path.BASE,
-              },
-              {
-                title: "Chiết khấu",
-                icon: icon_discount,
-                pathName: ROUTES.RETAILER.path.DISCOUNT,
-              },
-              {
-                title: "Chuyển tiền cho đại lý",
-                icon: icon_transfer,
-                pathName: ROUTES.RETAILER.path.TRANSFER,
-              },
-            ]}
-            header={{ title: "Danh mục", icon: icon_menu }}
-          /> */}
+        <ToolbarSubMenu
+          menuItem={[
+            {
+              title: "Đại lý",
+              icon: icon_retailer,
+              pathName: ROUTES.RETAILER.path.BASE,
+            },
+            {
+              title: "Chiết khấu",
+              icon: icon_discount,
+              pathName: ROUTES.RETAILER.path.DISCOUNT,
+            },
+            {
+              title: "Chuyển tiền cho đại lý",
+              icon: icon_transfer,
+              pathName: ROUTES.RETAILER.path.TRANSFER,
+            },
+          ]}
+          header={{ title: "Danh mục", icon: icon_menu }}
+          onChange={setMenuItem}
+        />
 
         <div className="listing-toolbar__filter">
           <img src="content/images/icon/ic_filter.svg" alt="filter" />
@@ -188,73 +195,74 @@ const RetailerListing = (props: RetailerListingProps) => {
           </div>
         </div>
       </div>
-
-      <div className="listing-main">
-        <ListPagination
-          pageNumber={pageNumber}
-          total={props.retailerList ? props.retailerList.listing.total : 0}
-          pageSize={pageSize}
-          onShowSizeChange={onShowSizeChange}
-          handleChangePage={(page_number) => {
-            loadListing();
-            setPageNumber(page_number);
-          }}
-          //   handleChangePage={(pageNumber) => setState({ pageNumber }, () => loadListing())}
-          length={props.retailerList ? props.retailerList.listing.data.length : 0}
-        />
-        <div className="listing-main__container">
-          <div className="d_flex sp_bw">
-            <Input
-              placeholder="Chưa làm search"
-              allowClear
-              // defaultValue={keyword!}
-              onChange={(event) => {
-                const key = event.target.value;
-                if (key.trim() !== "") {
-                  debounceSearch(key);
-                } else {
-                  debounceSearch(undefined);
-                }
-              }}
-            />
-            <CustomButton
-              item={"+ Tạo mới"}
-              type="primary"
-              size="small"
-              onClick={handleCreateItem}
-              style={{ width: "16rem" }}
-            />
-          </div>
-          <ListHeading
-            column={[
-              { name: "STT" },
-              { name: "Tên đại lý", width: "25%" },
-              { name: "Tên đăng nhập", width: "15%" },
-              { name: "Người liên hệ", width: "15%" },
-              { name: "Số điện thoại", width: "15%" },
-              { name: "Số dư (VNĐ)" },
-              { name: "Trạng Thái", align: "center" },
-            ]}
-            useCheckAll={false}
+      {menuItem === 0 && (
+        <div className="listing-main">
+          <ListPagination
+            pageNumber={pageNumber}
+            total={props.retailerList ? props.retailerList.listing.total : 0}
+            pageSize={pageSize}
+            onShowSizeChange={onShowSizeChange}
+            handleChangePage={(page_number) => {
+              loadListing();
+              setPageNumber(page_number);
+            }}
+            //   handleChangePage={(pageNumber) => setState({ pageNumber }, () => loadListing())}
+            length={props.retailerList ? props.retailerList.listing.data.length : 0}
           />
-
-          {retailerList.length > 0 && (
-            <div className="listing-main__container--listing">
-              {retailerList?.map((ctm, index) => (
-                <RetailerCard
-                  key={index}
-                  data={ctm}
-                  handleSelectItem={handleSelectItem}
-                  defaulSelect={selectingItem.includes(ctm.id.toString())}
-                  index={index + 1}
-                  handleUpdateItem={handleUpdateItem}
-                />
-              ))}
+          <div className="listing-main__container">
+            <div className="d_flex sp_bw">
+              <Input
+                placeholder="Chưa làm search"
+                allowClear
+                // defaultValue={keyword!}
+                onChange={(event) => {
+                  const key = event.target.value;
+                  if (key.trim() !== "") {
+                    debounceSearch(key);
+                  } else {
+                    debounceSearch(undefined);
+                  }
+                }}
+              />
+              <CustomButton
+                item={"+ Tạo mới"}
+                type="primary"
+                size="small"
+                onClick={handleCreateItem}
+                style={{ width: "16rem" }}
+              />
             </div>
-          )}
-          {retailerList.length === 0 && <NullListing type="Lịch sử bán hàng" />}
+            <ListHeading
+              column={[
+                { name: "STT" },
+                { name: "Tên đại lý", width: "25%" },
+                { name: "Tên đăng nhập", width: "15%" },
+                { name: "Người liên hệ", width: "15%" },
+                { name: "Số điện thoại", width: "15%" },
+                { name: "Số dư (VNĐ)" },
+                { name: "Trạng Thái", align: "center" },
+              ]}
+              useCheckAll={false}
+            />
+
+            {retailerList.length > 0 && (
+              <div className="listing-main__container--listing">
+                {retailerList?.map((ctm, index) => (
+                  <RetailerCard
+                    key={index}
+                    data={ctm}
+                    handleSelectItem={handleSelectItem}
+                    defaulSelect={selectingItem.includes(ctm.id.toString())}
+                    index={index + 1}
+                    handleUpdateItem={handleUpdateItem}
+                  />
+                ))}
+              </div>
+            )}
+            {retailerList.length === 0 && <NullListing type="Lịch sử bán hàng" />}
+          </div>
         </div>
-      </div>
+      )}
 
       <Drawer width={960} onClose={onCloseDrawer} visible={visibleDrawer} footer={null} destroyOnClose>
         <RetailerForm

@@ -24,7 +24,7 @@ import { routeModel } from "app/shared/util/pagination.constants";
 import { MERCHANT_TYPE } from "app/shared/util/pagination.constants";
 
 const Dashboard = lazy(() => import("app/modules/dashboard/Dashboard"));
-const Retailer = lazy(() => import("app/modules/retailer/retailerList/RetailerList"));
+const Retailer = lazy(() => import("app/modules/Retailer/RetailerList/RetailerList"));
 const img = {
   dashboardDef: "../../content/images/sidebar/ic_dashboard_def.svg",
   dashboardAct: "../../content/images/sidebar/ic_dashboard_act.svg",
