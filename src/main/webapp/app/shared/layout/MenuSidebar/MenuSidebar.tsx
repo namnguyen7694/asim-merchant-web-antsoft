@@ -39,41 +39,38 @@ export const MenuSidebar = (props: IMenuSidebarProps) => {
       mode={"inline"}
       className="layout__menu"
     >
-      {Object.values(ROUTES).map((route, index: number) => (
-        <>
-          {route.subMenu
-            ? authRoute(route.level) && (
-                <SubMenu
-                  key={route.key}
-                  title={
-                    <>
-                      {route.images && <img src={route.images.def} alt="icon_menu" />}
-                      <span>{route.title}</span>
-                    </>
-                  }
-                >
-                  {Object.values(route.subMenu).map((sub, idx) => (
-                    <Menu.Item key={sub.key} title={sub.title}>
-                      <NavLink exact={true} title="" to={sub.path.BASE}>
-                        <span>{sub.title}</span>
-                      </NavLink>
-                    </Menu.Item>
-                  ))}
-                </SubMenu>
-              )
-            : authRoute(route.level) && (
-                <Menu.Item key={route.key} title={route.title}>
-                  <NavLink exact={true} title="" to={route.path.BASE}>
-                    {route.images && (
-                      <img src={_activeRoute(route.path.BASE) ? route.images.act : route.images.def} alt="icon_menu" />
-                    )}
+      {Object.values(ROUTES).map((route, index: number) =>
+        route.subMenu
+          ? authRoute(route.level) && (
+              <SubMenu
+                key={route.key}
+                title={
+                  <>
+                    {route.images && <img src={route.images.def} alt="icon_menu" />}
                     <span>{route.title}</span>
-                  </NavLink>
-                </Menu.Item>
-              )}
-          {!!route.nextDivider && <Divider></Divider>}
-        </>
-      ))}
+                  </>
+                }
+              >
+                {Object.values(route.subMenu).map((sub, idx) => (
+                  <Menu.Item key={sub.key} title={sub.title}>
+                    <NavLink exact={true} title="" to={sub.path.BASE}>
+                      <span>{sub.title}</span>
+                    </NavLink>
+                  </Menu.Item>
+                ))}
+              </SubMenu>
+            )
+          : authRoute(route.level) && (
+              <Menu.Item key={route.key} title={route.title}>
+                <NavLink exact={true} title="" to={route.path.BASE}>
+                  {route.images && (
+                    <img src={_activeRoute(route.path.BASE) ? route.images.act : route.images.def} alt="icon_menu" />
+                  )}
+                  <span>{route.title}</span>
+                </NavLink>
+              </Menu.Item>
+            )
+      )}
     </Menu>
   );
 };

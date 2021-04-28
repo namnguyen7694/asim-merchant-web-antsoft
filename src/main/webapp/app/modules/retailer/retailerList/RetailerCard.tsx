@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "antd";
+import { Card, Checkbox } from "antd";
 // import { RetailerOutputModel } from "app/store/retailer/retailerTypes";
 interface Props {
   // data: RetailerOutputModel;
@@ -11,7 +11,7 @@ interface Props {
 }
 const RetailerCard: React.FC<Props> = (props) => {
   const { data } = props;
-  const merchant_profile = data.merchant_profile;
+  // const merchant_profile = data;
 
   const status = data.is_active ? "active" : "inactive";
   return (
@@ -28,12 +28,13 @@ const RetailerCard: React.FC<Props> = (props) => {
         checked={props.defaulSelect}
       /> */}
       <div onClick={() => props.handleUpdateItem(data)}>
-        <Card.Meta className="custom-item-card--info" title={props.index} />
-        <Card.Meta className="custom-item-card--info w-25" title={merchant_profile.merchant_name} />
-        <Card.Meta className="custom-item-card--info w-15" title={data.username} />
-        <Card.Meta className="custom-item-card--info w-15" title={merchant_profile.represent_name} />
-        <Card.Meta className="custom-item-card--info w-15" title={merchant_profile.represent_phone_number} />
-        <Card.Meta className="custom-item-card--info" title={Number(data.user_wallet.balance).toLocaleString()} />
+        <Card.Meta className="custom-item-card--info w-5" title={props.index} />
+        <Card.Meta className="custom-item-card--info w-15" title={data.merchantName} />
+        <Card.Meta className="custom-item-card--info w-15" title="" />
+        <Card.Meta className="custom-item-card--info w-15" title={""} />
+        <Card.Meta className="custom-item-card--info w-15" title={data.phoneNumber} />
+        <Card.Meta className="custom-item-card--info" title={""} />
+        {/* <Card.Meta className="custom-item-card--info" title={Number(data.user_wallet.balance).toLocaleString()} /> */}
         <Card.Meta className={`custom-item-card--info retailer-card-status ${status}`} title={status} />
       </div>
     </Card>

@@ -137,6 +137,19 @@
             width: 10%;
           }
         }
+        .ant-table-column-sorters {
+          cursor: pointer;
+          .col-name {
+            margin-right: 0.8rem;
+          }
+          .anticon {
+            color: #c0c0c0;
+            font-size: 1rem;
+            &.active {
+              color: #2d2d2d;
+            }
+          }
+        }
       }
       &--listing {
         transition: ease-in-out 0.2s;

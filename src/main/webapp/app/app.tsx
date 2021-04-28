@@ -18,12 +18,8 @@ import ErrorBoundaryRoute from "./shared/error/error-boundary-route";
 import Login from "app/modules/Login/Login";
 import MenuSidebar from "./shared/layout/MenuSidebar/MenuSidebar";
 import { Avatar, Badge, Card, Dropdown, Layout, Menu } from "antd";
-import ErrorBoundary from "./shared/error/error-boundary";
 import Routes from "./Routes";
 import { Header } from "antd/lib/layout/layout";
-import { logDebug } from "react-jhipster";
-import { MessageOutlined } from "@ant-design/icons";
-import { ROUTES } from "./routes/appRoutes";
 
 const baseHref = document.querySelector("base").getAttribute("href").replace(/\/$/, "");
 

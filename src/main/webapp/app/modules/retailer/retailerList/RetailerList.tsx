@@ -1,5 +1,5 @@
 import { Col, Divider, Drawer, Input, Row } from "antd";
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import _ from "lodash";
 
 // import icon_filter from "content/images/icon/ic_filter.svg";
@@ -21,6 +21,7 @@ import { IRootState } from "app/shared/reducers";
 import { RetailerListReducerType, RetailerOutputModel } from "../retailerTypes";
 import RetailerForm from "../RetailerForm/RetailerForm";
 import ToolbarSubMenu from "app/shared/layout/ToolbarSubMenu/ToolbarSubMenu";
+import axios from "axios";
 // import RetailerForm from "./RetailerForm";
 
 const icon_menu = "content/images/icon/ic_menu.svg";
@@ -54,12 +55,16 @@ const RetailerListing = (props: RetailerListingProps) => {
   const [startDate, setStartDate] = useState<string>("");
   const [status, setStatus] = useState<string>("");
   const [menuItem, setMenuItem] = useState<0 | 1 | 2>(0);
+  const [retailerList, setRetailerList] = useState([]);
+
+  // retailerList
   const handleCreateItem = () => {
     setVisibleDrawer(true);
     setDrawerType("create");
   };
   //   handleUpdateItem = (item: RetailerOutputModel) => {
   const handleUpdateItem = (item: any) => {
+    setUpdatingItem(item);
     setVisibleDrawer(true);
     setDrawerType("update");
   };
@@ -116,40 +121,23 @@ const RetailerListing = (props: RetailerListingProps) => {
     loadListing();
   };
 
-  const loadListing = (param?: ILoadList) => {
-    !!props.loadRetailers &&
-      props.loadRetailers({
-        page_number: param?.page_number ?? pageNumber,
-        page_size: param?.page_size ?? pageSize,
-        keyword: param?.key_word ?? keyword,
-        start_date: param?.start_date ?? startDate,
-        end_date: param?.end_date ?? endDate,
-      });
+  const loadListing = async (param?: ILoadList) => {
+    const rs = await axios.get("api/merchants?offset=0&pageNumber=1&pageSize=10");
+    if (rs.statusText === "OK") {
+      setRetailerList(rs.data);
+    }
   };
 
   const filterStatusOptions = () => {
     const options: string[] = ["Active", "Inactive"];
     return options;
   };
+
   useEffect(() => {
     loadListing();
     return () => {};
   }, []);
 
-  const retailerList = [
-    {
-      id: 0,
-      username: "Nguyễn Trần Công Duy",
-      merchant_profile: {
-        merchant_name: "AntSoft",
-        represent_name: "AntSoft",
-        represent_phone_number: "0123456789",
-      },
-      user_wallet: {
-        balance: 1000000000,
-      },
-    },
-  ];
   return (
     <div className="listing">
       <Row gutter={[24, 0]}>
@@ -258,15 +246,15 @@ const RetailerListing = (props: RetailerListingProps) => {
                 </div>
                 <ListHeading
                   column={[
-                    { name: "STT" },
-                    { name: "Tên đại lý", width: "25%" },
-                    { name: "Tên đăng nhập", width: "15%" },
-                    { name: "Người liên hệ", width: "15%" },
-                    { name: "Số điện thoại", width: "15%" },
-                    { name: "Số dư (VNĐ)" },
-                    { name: "Trạng Thái", align: "center" },
+                    { name: "STT", width: "5%" },
+                    { name: "Tên đại lý", width: "15%" },
+                    { name: "Tên đăng nhập", width: "15%", fieldName: "username" },
+                    { name: "Người liên hệ", width: "15%", fieldName: "username" },
+                    { name: "Số điện thoại", width: "15%", fieldName: "username" },
+                    { name: "Số dư (VNĐ)", fieldName: "username" },
+                    { name: "Trạng Thái", fieldName: "username", align: "center" },
                   ]}
-                  useCheckAll={false}
+                  useCheckAll={true}
                 />
 
                 {retailerList.length > 0 && (

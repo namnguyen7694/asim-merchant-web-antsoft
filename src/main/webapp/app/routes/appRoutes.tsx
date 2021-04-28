@@ -13,7 +13,7 @@ import { routeModel } from "app/shared/util/pagination.constants";
 // import topupDef from "assets/images/sidebar/ic_topup_def.svg";
 // import topupAct from "assets/images/sidebar/ic_topup_act.svg";
 
-// import wl_topupDef from "assets/images/sidebar/ic_wl_topup_def.svg";
+// import wl_topupDef from "content/images/sidebar/ic_wl_topup_act.svg";
 // import wl_topupAct from "assets/images/sidebar/ic_wl_topup_act.svg";
 
 // import retailerDef from "assets/images/sidebar/ic_retailer_def.svg";
