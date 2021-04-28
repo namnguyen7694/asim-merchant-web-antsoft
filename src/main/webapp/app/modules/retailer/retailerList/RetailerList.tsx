@@ -283,7 +283,10 @@ const RetailerListing = (props: RetailerListingProps) => {
           handleCancel={() => onCloseDrawer()}
           formType={drawerType}
           updatingItem={updatingItem}
-          loadListing={loadListing}
+          loadListing={() => {
+            loadListing();
+            setVisibleDrawer(false);
+          }}
         />
       </Drawer>
     </div>

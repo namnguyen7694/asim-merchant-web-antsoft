@@ -62,7 +62,7 @@ const RetailerForm = (props: RetailerFormProps) => {
 
   const handelSubmit = async (formData) => {
     const submitData: any = {};
-    // setLoading(true);
+    setLoading(true);
     for (const [key, val] of Object.entries(formData)) {
       if (val) {
         submitData[key] = val;
@@ -71,10 +71,7 @@ const RetailerForm = (props: RetailerFormProps) => {
       }
     }
     if (props.formType === "update") submitData["id"] = props.updatingItem;
-    let rs;
-    if (props.formType === "update") {
-      rs = await axios.post("api/merchants", submitData);
-    }
+    const rs = await axios.post("api/merchants", submitData);
     if (rs.statusText === "Created") {
       props.loadListing();
       CustomNotiMessage(
@@ -82,7 +79,7 @@ const RetailerForm = (props: RetailerFormProps) => {
         props.formType === "create" ? "Tạo đại lý thành công" : "Cập nhật đại lý thành công"
       );
     }
-    // setLoading(false);
+    setLoading(false);
 
     // setState({ loading: true }, () => {
     //   apiUtil.post({ url: `user/retailer/${props.formType}/`, data: submitData }).then((res) => {
