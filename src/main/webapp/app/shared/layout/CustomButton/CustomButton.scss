@@ -1,0 +1,126 @@
+/* btn */
+.btn {
+  width: auto;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: $borderRadiusDefault;
+  touch-action: manipulation;
+  -webkit-appearance: button;
+  cursor: pointer;
+  transition: all 250ms ease 0ms;
+  &:active {
+    -webkit-box-shadow: 0rem 0rem 1.1rem 0.1rem gray;
+    -moz-box-shadow: 0rem 0rem 1.1rem 0.1rem gray;
+    box-shadow: 0rem 0rem 1.1rem 0.1rem gray;
+  }
+  &--hover:hover {
+    border: 1px solid $textColorDark;
+  }
+  &--transparent {
+    border: 1px solid transparent;
+    background-image: none;
+    background-color: transparent;
+    outline: none;
+    user-select: none;
+  }
+  &--shiny {
+    position: relative;
+    &:hover {
+      background-image: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        color-stop(33%, transparent),
+        color-stop(50%, rgba(255, 255, 255, 0.3)),
+        color-stop(66%, transparent)
+      );
+      background-image: -o-linear-gradient(left, transparent 33%, rgba(255, 255, 255, 0.3) 50%, transparent 66%);
+      background-image: linear-gradient(to right, transparent 33%, rgba(255, 255, 255, 0.3) 50%, transparent 66%);
+      background-size: 300% 100%;
+      -webkit-animation: shine 1s 1;
+      animation: shine 1s 1;
+    }
+  }
+  &--shadow {
+    -webkit-box-shadow: 0 0.4rem 1.6rem rgba(66, 78, 87, 0.16);
+    -moz-box-shadow: 0 0.4rem 1.6rem rgba(66, 78, 87, 0.16);
+    box-shadow: 0 0.4rem 1.6rem rgba(66, 78, 87, 0.16);
+  }
+  &--opacity {
+    opacity: 0.5;
+  }
+  &--disabled {
+    cursor: not-allowed;
+  }
+  &__circle {
+    width: 4.2rem;
+    height: 4.2rem;
+    border-radius: 50%;
+  }
+  &__square {
+    width: 4.2rem;
+  }
+
+  &__oval {
+    border-radius: 2.4rem;
+  }
+
+  /*type*/
+  &--primary {
+    background-color: $appBase;
+    color: #ffffff;
+  }
+
+  &--secondary {
+    background-color: #ffffff;
+    color: $appBase;
+    border: 2px solid $appBase;
+  }
+  &--tertiary {
+    background-color: #ffffff;
+    color: #4c4c4c;
+    border: none;
+  }
+  /*type*/
+
+  /*size*/
+  &--small {
+    height: 3.6rem;
+    font-size: 1.4rem;
+    // > * {
+    //   font-size: 1.4rem;
+    // }
+  }
+  &--medium {
+    height: 4.8rem;
+    font-size: 1.6rem;
+    // > * {
+    //   font-size: 1.6rem;
+    // }
+  }
+  &--large {
+    height: 5.6rem;
+    font-size: 1.8rem;
+    padding: 0 2rem;
+    // > * {
+    //   font-size: 1.8rem;
+    // }
+  }
+  /*size*/
+
+  @-webkit-keyframes shine {
+    0% {
+      background-position: right;
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      background-position: right;
+    }
+  }
+}

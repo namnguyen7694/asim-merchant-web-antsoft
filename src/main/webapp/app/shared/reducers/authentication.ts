@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Storage } from 'react-jhipster';
+import { logDebug, Storage } from 'react-jhipster';
 
 import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
 
@@ -111,7 +111,7 @@ export const login: (username: string, password: string, rememberMe?: boolean) =
 ) => {
   const result = await dispatch({
     type: ACTION_TYPES.LOGIN,
-    payload: axios.post('api/authenticate', { username, password, rememberMe }),
+    payload: axios.post('api/login', { username, password, rememberMe }),
   });
   const bearerToken = result.value.headers.authorization;
   if (bearerToken && bearerToken.slice(0, 7) === 'Bearer ') {

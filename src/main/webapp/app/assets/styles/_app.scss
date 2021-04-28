@@ -72,7 +72,7 @@
     }
     &--contact {
       width: 100%;
-      padding: 1rem 2.4rem;
+      // padding: 1rem 2.4rem;
       h5 {
         color: $textBaseDark;
         font-size: 1.5rem;
@@ -97,6 +97,9 @@
         text-decoration: underline;
         margin: 1rem 0;
         cursor: pointer;
+      }
+      .jh-card {
+        background-color: #fff0;
       }
     }
   }
@@ -142,15 +145,16 @@
 }
 
 // /* auth */
-@import '../../modules/login/Auth.scss';
-
+@import "../../modules/login/Auth.scss";
 // /* common */
+@import "../../modules/dashboard/Dashboard.scss";
+
 // @import "../../app/components/NotFound/NotFound.scss";
-// @import "../../app/components/CustomButton/CustomButton.scss";
+@import "../../shared/layout/CustomButton/CustomButton.scss";
 // @import "../../app/components/FloatingButton/FloatingButton.scss";
-// @import "../../app/components/CustomListCard/CustomItemCard.scss";
-// @import "../../app/components/CustomListing/CustomLlisting.scss";
-// @import "../../app/components/CustomFormItem/CustomFormItem.scss";
+@import "../styles/system/CustomItemCard.scss";
+@import "../../shared/layout/CustomList/CustomLlisting.scss";
+@import "../../shared/layout/CustomFormItem/CustomFormItem.scss";
 // @import "../../app/components/OrderCart/OrderCart.scss";
 
 // /* module*/
@@ -158,5 +162,4 @@
 // @import "../../app/modules/dump/DumpComponent.scss";
 // @import "../../app/modules/topup/Topup.scss";
 // @import "../../app/modules/sale/Sale.scss";
-// @import "../../app/modules/retailer/Retailer.scss";
-// @import "../../app/modules/dashboard/Dashboard.scss";
+@import "../../modules/retailer/Retailer.scss";
